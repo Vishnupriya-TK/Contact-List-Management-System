@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact List Management</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+      background: #a2bee7;
+      padding: 20px;
+      color: #333;
+      align-items: center;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: #222;
+    }
+
+    .container {
+      max-width: 600px;
+      margin:auto;
+      margin-top: 10%;
+      background: #f5ffd8;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"] {
+      width: 48%;
+      padding: 10px;
+      margin: 5px 1%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    
+    #searchInput {
+      width: 98%;
+      margin: 10px 1%;
+    }
+
+    button {
+      padding: 10px 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px 1%;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+    table{
+        border-collapse:collapse;
+        border: 2px solid rgb(79, 48, 2);
+        border-radius: 50px;
+        background: #f0fec7;
+        width: 98%;
+     text-align: center;
+    }
+
+    @media screen and (max-width: 600px) {
+      input[type="text"] {
+        width: 98%;
+        margin: 5px 1%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>📞Contact List Management System</h1>
+
+    <div>
+      <input type="text" id="nameInput" placeholder="Enter name" />
+      <input type="text" id="mobileInput" placeholder="Enter mobile no" />
+      <button onclick="addItem()">Add</button>
+      <input type="text" id="searchInput" placeholder="Search contacts..." oninput="searchItems()" />
+    </div>
+    <table border="1" id="ctab">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Mobile</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="tb">
+    <!--rows added here-->
+  </tbody>
+</table><br>
+<button onclick="clearAll()">Reset</button>
+  </div>
+
+</body>
+<script>
+
+    let contacts = []
+    function addItem(){
+        const name = document.getElementById("nameInput").value.trim();
+        const phone= document.getElementById("mobileInput").value.trim();
+        contacts.push({name,phone});
+        document.getElementById("nameInput").value=''
+        document.getElementById("mobileInput").value=''
+        displayItems(contacts);
+    }
+
+    function removeItem(index){
+        contacts.splice(index,1);
+        displayItems(contacts);
+    }
+
+    function displayItems(){
+        const tbody = document.getElementById("tb");
+        tbody.innerHTML = '';
+        contacts.forEach((contact,index)=>{
+            const row = `<tr>
+                <td>${contact.name}</td>
+                <td>${contact.phone}</td>
+                <td><button onclick="removeItem(${index})">Delete</button></td>
+                </tr>`;
+                tbody.innerHTML += row;
+        })
+    }
+
+    function searchItems(){
+        const query = document.getElementById("searchInput").value.toLowerCase();
+        const filtered = contacts.filter(c=>
+            c.name.toLowerCase.includes(query)||c.phone.includes(query)
+        );
+        displayItems(filtered);
+    }
+    function clearAll(){
+        if(confirm("Are you sure to delete all entries?")){
+            contacts =[];
+        displayItems();
+        }
+        
+    }
+</script>
+
+</html>
