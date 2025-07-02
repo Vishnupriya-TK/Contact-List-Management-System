@@ -1,5 +1,4 @@
 
-```markdown
 # 📞 Contact List Management System
 
 A simple and user-friendly web application to manage your contacts. This app lets you add, search, delete, and clear contact entries, all in your browser — with no backend or database required. Built using **HTML**, **CSS**, and **Vanilla JavaScript**, the app uses **Local Storage** to preserve data even after refreshing the page.
@@ -60,4 +59,4 @@ This project is open-source and free to use for personal, educational, or non-co
 ---
 
 ✅ Feel free to customize the styles or enhance features (like editing contacts or input validation) based on your needs!
-```
+
