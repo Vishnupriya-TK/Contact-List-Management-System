@@ -52,5 +52,3 @@ https://vercel.com/vishnu-priya-t-ks-projects/contact-list-management-system/AjU
 This project is **open-source** and free to use for learning, personal, or educational purposes.
 
 ---
-
-✅ Feel free to customize it further — add **edit features**, **form validation**, or even **export/import contacts**.
